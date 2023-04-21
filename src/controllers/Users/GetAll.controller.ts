@@ -3,6 +3,7 @@ import * as Services from './../../services/user.services'
 
 
 const GetAll : EXPRESS.RequestHandler =async  (req, res) =>{
+    
     const API : any = String(process.env.API) 
     const API_FRONT = req.headers.api_key
     if (API != API_FRONT) {
