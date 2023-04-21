@@ -6,6 +6,12 @@ import date from 'date-and-time'
 import GenerateAPIKey from '../../utils/APIKEY'
 
 const createUser : EXPRESS.RequestHandler = async (req, res) =>{
+    const API : any = String(process.env.API) 
+    const API_FRONT = req.headers.api_key
+    if (API != API_FRONT) {
+        res.status(401).send("You're not allowed to access this route !")
+        return
+    }
     const Body : any = req.body
     const Username : any = await Services.GetOneBy("username", Body.username)
     const Email : any = await Services.GetOneBy("email",Body.email)

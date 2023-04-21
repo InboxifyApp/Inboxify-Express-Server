@@ -20,12 +20,17 @@ app
       .then((res: any) => {
         console.log("Connected to the database ! ")
         app.use("/me", UserRoute)
+        app.post("/boo", (req, res) =>{
+          console.log(req.body);
+          
+          res.send("Hello")
+        })
         //middlewares 
       })
       .catch((e: any) => {
         console.log(e)
       })
   })
-  .on("error", () => {
-    console.log("There's an error ! ")
+  .on("error", (e:any) => {
+    console.log("There's an error ! " ,e )
   })
