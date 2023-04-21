@@ -8,8 +8,12 @@ import GenerateAPIKey from '../../utils/APIKEY'
 const createUser : EXPRESS.RequestHandler = async (req, res) =>{
     const API : any = String(process.env.API) 
     const API_FRONT = req.headers.api_key
+    console.log(req.headers)
     if (API != API_FRONT) {
+        //unauthorized status 
+        
         res.status(401).send("You're not allowed to access this route !")
+
         return
     }
     const Body : any = req.body
