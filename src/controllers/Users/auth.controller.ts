@@ -14,9 +14,13 @@ const Auth :EXPRESS.RequestHandler= (req, res) =>{
     }
 
     const autho : any = req.headers.authorization
-    const [beerer, token] = autho 
+    const [beerer, token] = autho.split(" ")
     if (!beerer || !token) {
         res.status(401).send("You're not allowed to access this route !")
+        return
+    }
+    if (beerer != "Bearer") {
+        res.status(400).send("Invalid querries")
         return
     }
 
