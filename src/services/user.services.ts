@@ -43,6 +43,14 @@ const Update = async (id : number , datas : any) =>{
     await Users.update(id , datas)
 }
 
+const getPass = async (id : any) =>{
+    return await Users.findOne({
+        select:['password'],
+        where : {
+            id : id
+        }
+    })
+}
 //get by phone or email or username 
 const GetOneBy = async (field : any , value : any) =>{
 
@@ -64,6 +72,7 @@ export {
     Create,
     Update,
     Delete,
-    GetOneBy
+    GetOneBy,
+    getPass
 
 }
