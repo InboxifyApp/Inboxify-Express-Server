@@ -4,6 +4,17 @@ import JWT from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 
 const Login : EXPRESS.RequestHandler= async  (req,res) =>{
+    console.log("hello".indexOf("e"))
+    const API : any = String(process.env.API) 
+    const API_FRONT = req.headers.api_key
+    console.log(req.headers)
+    if (API != API_FRONT) {
+        //unauthorized status 
+        
+        res.status(401).send("You're not allowed to access this route !")
+
+        return
+    }
     const body : any = req.body 
     if (!body.username || !body.password) {
         res.status(400).send({
@@ -17,7 +28,6 @@ const Login : EXPRESS.RequestHandler= async  (req,res) =>{
         res.status(401).send("Invalid username or password")
         return 
     }
-    //get the password 
 
     const pass : any = await Services.getPass(user.id)
 
@@ -25,13 +35,11 @@ const Login : EXPRESS.RequestHandler= async  (req,res) =>{
         res.status(401).send("Invalid username or password")
         return
     }
-    //compare the password
     const isMatch = await bcrypt.compare(body.password , pass.password)
     if (!isMatch) {
         res.status(401).send("Invalid username or password")
         return 
     }
-    //generate the token
     const token = JWT.sign({
         id : user.id
     } , process.env.JWT_SECRET as string , {
