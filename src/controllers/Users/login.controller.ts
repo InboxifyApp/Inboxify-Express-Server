@@ -40,6 +40,7 @@ const Login : EXPRESS.RequestHandler= async  (req,res) =>{
         res.status(401).send("Invalid username or password")
         return 
     }
+    console.log("User datas ! : " , user)
     const token = JWT.sign({
         id : user.id
     } , process.env.JWT_SECRET as string , {

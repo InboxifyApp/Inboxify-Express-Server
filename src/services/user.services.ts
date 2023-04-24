@@ -10,7 +10,8 @@ const targetFields : any = [
     'apikey_expires',
     'apikey_last_used',
     'apikey_last_ip',
-    'apikey_call_times'
+    'apikey_call_times', 
+    'id'
 ]
 
 

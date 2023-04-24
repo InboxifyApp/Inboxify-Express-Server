@@ -11,7 +11,7 @@ const getOne :EXPRESS.RequestHandler = async (req, res) =>{
     }
 
     //get the target value and field . 
-    const toke : any = req.query.token
+    const toke : any = req.headers.authorization
 
     //check if the field is valid
     if (!toke ) {
@@ -28,24 +28,30 @@ const getOne :EXPRESS.RequestHandler = async (req, res) =>{
         return
     }
     //check if the token is valid
-    const decoded : any = JWT.verify(token, String(process.env.JWT_SECRET))
-    if (!decoded) {
-        res.status(400).send("Invalid token")
-        return
-    }
-    //check if the user exists
+    
+
+    JWT.verify(token, String(process.env.JWT_SECRET), async (err:any, decoded:any)=>{
+
+        if (err) {
+            res.status(401).send("You're not allowed to access this route !")
+            return
+        }
+        console.log(decoded)
+
+            const data : any = await Services.GetOne(decoded.id)
+            console.log(data)
+            if (data) {
+                res.status(200).send(data)
+                return
+            }
+            else {
+                res.status(404).send("User not found")
+            }
+    })
 
 
-
-
-
-
-    const data : any = await Services.GetOneBy("id", decoded)
-    if (data) {
-        res.status(200).send(data)
-        return
-    }
-    res.status(404).send("User not found")
+    
+    
     
 
 }

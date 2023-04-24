@@ -12,7 +12,7 @@ import Login from '../controllers/Users/login.controller'
 UserRoute.post('/' , createUser)
 UserRoute.post('/login' , Login)
 UserRoute.get('/all' , GetAll)
-UserRoute.get('/' , getOne)
+UserRoute.post('/b' , getOne)
 UserRoute.post("/auth", Auth)
 
 export default UserRoute
