@@ -11,7 +11,7 @@ class Cluster extends TypeORM.BaseEntity{
     @TypeORM.Column()
     domain : string
 
-    @TypeORM.Column()
+    @TypeORM.Column({nullable : true })
     color : string 
 
     
@@ -19,11 +19,9 @@ class Cluster extends TypeORM.BaseEntity{
     @TypeORM.Column()
     description : string
 
-    @TypeORM.Column()
+    @TypeORM.Column({nullable : true })
     image : string
 
-    @TypeORM.Column()
-    link : string
 
     @TypeORM.Column()
     created_at : Date

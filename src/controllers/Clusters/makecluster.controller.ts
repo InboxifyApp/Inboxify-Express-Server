@@ -42,6 +42,7 @@ const makeCluster : EXPRESS.RequestHandler = async(req, res)=>{
     Services.saveCluster(cluster).then(resp=>{
         res.status(200).send("Cluster is created successfully ! ")
     }).catch(e =>{
+        console.log(e)
         res.status(500).send("Internal Error ! please contact me ! ")
     })
 
