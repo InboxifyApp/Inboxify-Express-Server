@@ -3,6 +3,7 @@ import "dotenv/config"
 import { json } from "body-parser"
 import appDataSource from "./utils/POSTGRES"
 import UserRoute from "./routes/user.route"
+import clusterRouter from "./routes/cluster.route"
 const cors = require("cors")
 
 const app = express()
@@ -19,6 +20,7 @@ app
       .then((res: any) => {
         console.log("Connected to the database ! ")
         app.use("/me", UserRoute)
+        app.use("/cluster" , clusterRouter)
         
         //middlewares 
       })
