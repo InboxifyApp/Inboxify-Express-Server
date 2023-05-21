@@ -2,7 +2,7 @@ import * as TypeORM from 'typeorm'
 import Users from './users.schema'
 
 @TypeORM.Entity()
-class Cluster {
+class Cluster extends TypeORM.BaseEntity{
     @TypeORM.PrimaryGeneratedColumn()
     id : number 
 

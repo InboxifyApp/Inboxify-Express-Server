@@ -55,7 +55,7 @@ class Users extends TypeORM.BaseEntity{
     updatedat : Date
 
     
-    @TypeORM.ManyToMany(type => Cluster, cluster => cluster.users)
+    @TypeORM.ManyToMany(type => Cluster, cluster => cluster.owner)
     clusters : Cluster[]
 
 
