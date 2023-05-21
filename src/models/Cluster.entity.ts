@@ -8,6 +8,13 @@ class Cluster {
 
     @TypeORM.Column()
     name : string
+    @TypeORM.Column()
+    domain : string
+
+    @TypeORM.Column()
+    color : string 
+
+    
 
     @TypeORM.Column()
     description : string
@@ -26,7 +33,7 @@ class Cluster {
 
 
     @TypeORM.ManyToMany(type => Users, user => user.clusters)
-    users : Users[]
+    owner : Users[]
     
 
 }

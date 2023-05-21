@@ -10,7 +10,6 @@ const app = express()
 app.use(json())
 app.use(cors())
 const PORT: any = process.env.PORT || 3000
-
 app
   .listen(PORT, () => {
     console.log(`Listening on ${PORT}`)
@@ -20,11 +19,7 @@ app
       .then((res: any) => {
         console.log("Connected to the database ! ")
         app.use("/me", UserRoute)
-        app.post("/boo", (req, res) =>{
-          console.log(req.body);
-          
-          res.send("Hello")
-        })
+        
         //middlewares 
       })
       .catch((e: any) => {
