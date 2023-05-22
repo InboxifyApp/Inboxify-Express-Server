@@ -3,14 +3,24 @@ import * as EXPRESS from 'express'
 import Messages from '../../models/messages.entity'
 import * as cls from '../../services/cluster.services'
 import * as Format from 'date-and-time'
+import * as usr from './../../services/user.services'
 const saveMSG :EXPRESS.RequestHandler = async (req, res) =>{
 
-    const API : any = String(process.env.API) 
-    const API_FRONT = req.headers.api_key
-    if (API != API_FRONT) {
+
+
+    
+    const apikey : any = req.headers.apikey 
+    if (!apikey) {
         res.status(401).send("You're not allowed to access this route !")
         return
     }
+
+    const user : any = await usr.GetOneBy("api_key" ,apikey )
+    if (!user) {
+        res.status(401).send("You're not allowed to access this route !")
+        return
+    }
+
     //get the cluster id 
     const clusterId : any = req.body.cluster
 
@@ -18,11 +28,13 @@ const saveMSG :EXPRESS.RequestHandler = async (req, res) =>{
         res.status(400).send("You must provide a cluster !")
         return
     }
+
     const cluster  :any = cls.getClus(clusterId)
     if (!cluster) {
         res.status(404).send(`No cluster found with ID : ${clusterId} !`)
         return
     }
+
 
     const message = new Messages
     message.clusters = clusterId
