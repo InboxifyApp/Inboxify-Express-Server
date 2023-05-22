@@ -14,8 +14,6 @@ class Clusters extends TypeORM.BaseEntity{
     @TypeORM.Column({nullable : true })
     color : string 
 
-    
-
     @TypeORM.Column()
     description : string
 
