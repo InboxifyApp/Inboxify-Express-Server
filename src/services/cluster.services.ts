@@ -17,12 +17,12 @@ const saveCluster = async (cluster : any) =>{
 }
 
 //delete cluster 
-const deleteCluster = async (id : number) =>{
+const deleteCluster = async (id : any) =>{
     await Clusters.delete(id)
 }
 
 //one cluster 
-const getCluster = async (id : number) =>{
+const getCluster = async (id : any) =>{
     return await Clusters.findOne({
         where:{
             id : id 

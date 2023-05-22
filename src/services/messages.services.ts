@@ -2,10 +2,10 @@ import Messages from "../models/messages.entity"
 
 
 //get all messages
-const getAll = async(cluster: any) =>{
-    return Messages.find({
+const GetAll = async(clus: any) =>{
+    return await Messages.find({
         where : {
-            clusters : cluster
+            clusters : clus
         }
     })
 }
@@ -29,11 +29,11 @@ const getMsg = async (id : number) =>{
 
 
 
-export default {
-    getAll,
+export  {
+    GetAll,
     createMsg,
     deleteMsg,
     getMsg,
-    
+
 
 }
