@@ -4,10 +4,8 @@ import Clusters from './../models/Cluster.entity'
 //get one cluster 
 
 const getClus = async (owner: any) => {
-    const clusters = await Clusters.find({
-      where: {
-        owner: owner,
-      },
+    const clusters = await Clusters.findBy({
+            owner: owner
     })
     return clusters;
   }

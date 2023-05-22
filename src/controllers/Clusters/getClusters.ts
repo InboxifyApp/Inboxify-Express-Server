@@ -1,8 +1,9 @@
 import * as Services from './../../services/cluster.services'
 import * as EXPRESS from 'express'
+import * as userServ from './../../services/user.services'
 import JWT from 'jsonwebtoken'
 
-const getClusters : EXPRESS.RequestHandler = (req, res) =>{
+const getClusters : EXPRESS.RequestHandler = async (req, res) =>{
     const API : any = String(process.env.API) 
     const API_FRONT = req.headers.api_key
     if (API != API_FRONT) {
@@ -20,7 +21,7 @@ const getClusters : EXPRESS.RequestHandler = (req, res) =>{
         res.status(401).send("You're not allowed to access this route !")
         return
     }
-    const owner : any = decoded.id
+    const owner : any = await userServ.GetOneBy("id" , decoded.id)
     console.log(owner)
     Services.getClus(owner).then((data : any) =>{
         if (data.length) {
