@@ -25,11 +25,11 @@ class Messages extends TypeORM.BaseEntity {
     created_at : Date
 
     //cluster 
-    @TypeORM.ManyToMany(
+    @TypeORM.ManyToOne(
         type => Clusters,
         cluster => cluster.id
     )
-    clusters : Clusters[]
+    clusters : Clusters
 
     @TypeORM.Column({default : false})
     read : boolean

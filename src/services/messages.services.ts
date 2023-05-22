@@ -3,10 +3,10 @@ import Messages from "../models/messages.entity"
 
 //get all messages
 const GetAll = async(clus: any) =>{
-    return await Messages.find({
-        where : {
+    return await Messages.findBy({
+
             clusters : clus
-        }
+        
     })
 }
 

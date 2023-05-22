@@ -15,7 +15,7 @@ const saveMSG :EXPRESS.RequestHandler = async (req, res) =>{
         return
     }
 
-    const user : any = await usr.GetOneBy("api_key" ,apikey )
+    const user : any = await usr.GetOneBy("apikey" ,apikey )
     if (!user) {
         res.status(401).send("You're not allowed to access this route !")
         return
