@@ -1,6 +1,6 @@
 import * as TypeORM from 'typeorm'
 import Users from './users.schema'
-
+import Messages from './messages.entity'
 @TypeORM.Entity()
 class Clusters extends TypeORM.BaseEntity{
     @TypeORM.PrimaryGeneratedColumn()
@@ -28,6 +28,9 @@ class Clusters extends TypeORM.BaseEntity{
 
     @TypeORM.Column()
     updated_at : Date
+
+    @TypeORM.OneToMany(type => Messages, message => message.clusters)
+    messages : Messages[]
 
 
     @TypeORM.ManyToOne(type => Users, user => user.clusters)
