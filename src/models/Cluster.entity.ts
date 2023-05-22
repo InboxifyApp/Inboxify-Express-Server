@@ -2,7 +2,7 @@ import * as TypeORM from 'typeorm'
 import Users from './users.schema'
 
 @TypeORM.Entity()
-class Cluster extends TypeORM.BaseEntity{
+class Clusters extends TypeORM.BaseEntity{
     @TypeORM.PrimaryGeneratedColumn()
     id : number 
 
@@ -30,10 +30,10 @@ class Cluster extends TypeORM.BaseEntity{
     updated_at : Date
 
 
-    @TypeORM.ManyToMany(type => Users, user => user.clusters)
+    @TypeORM.ManyToOne(type => Users, user => user.clusters)
     owner : Users[]
     
 
 }
 
-export default Cluster 
+export default Clusters

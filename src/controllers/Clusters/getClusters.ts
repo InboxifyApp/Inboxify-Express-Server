@@ -21,7 +21,8 @@ const getClusters : EXPRESS.RequestHandler = (req, res) =>{
         return
     }
     const owner : any = decoded.id
-    Services.getClusters(owner).then((data : any) =>{
+    console.log(owner)
+    Services.getClus(owner).then((data : any) =>{
         if (data.length) {
             res.status(200).send(data)
             return

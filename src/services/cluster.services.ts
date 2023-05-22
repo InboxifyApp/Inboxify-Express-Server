@@ -3,15 +3,14 @@ import Clusters from './../models/Cluster.entity'
 
 //get one cluster 
 
-const getClusters = async (owner: any ) =>{
-    
-    return await Clusters.find({
-        where : {
-            owner : owner
-        }
+const getClus = async (owner: any) => {
+    const clusters = await Clusters.find({
+      where: {
+        owner: owner,
+      },
     })
-}
-
+    return clusters;
+  }
 //save cluster 
 const saveCluster = async (cluster : any) =>{
     await Clusters.save(cluster)
@@ -32,7 +31,7 @@ const getCluster = async (id : number) =>{
 }
 
 export {
-    getClusters,
+    getClus,
     saveCluster,
     deleteCluster,
     getCluster

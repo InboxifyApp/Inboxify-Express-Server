@@ -9,6 +9,9 @@ const appDataSource = new DataSource({
   database: String(process.env.DATABASE) || "",
   entities: [__dirname + "/../models/*.ts"],
   synchronize: true,
+  ssl:{
+    rejectUnauthorized : false
+  }
 })
 
 export default appDataSource
