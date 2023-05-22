@@ -4,6 +4,7 @@ import { json } from "body-parser"
 import appDataSource from "./utils/POSTGRES"
 import UserRoute from "./routes/user.route"
 import clusterRouter from "./routes/cluster.route"
+import msgRouter from "./routes/messages.route"
 const cors = require("cors")
 
 const app = express()
@@ -21,7 +22,7 @@ app
         console.log("Connected to the database ! ")
         app.use("/me", UserRoute)
         app.use("/cluster" , clusterRouter)
-        
+        app.use("/message" , msgRouter)
         //middlewares 
       })
       .catch((e: any) => {
