@@ -28,9 +28,19 @@ const getCluster = async (id : any) =>{
     })
 }
 
+const getLimited = async (id : any) =>{
+    return await Clusters.findOne({
+        select:["id", "name"],
+
+        where:{
+            id : id 
+        }
+    })
+}
 export {
     getClus,
     saveCluster,
     deleteCluster,
-    getCluster
+    getCluster,
+    getLimited
 }
