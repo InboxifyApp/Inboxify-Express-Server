@@ -7,7 +7,7 @@ const getClus = async (owner: any) => {
     const clusters = await Clusters.findBy({
             owner: owner
     })
-    return clusters;
+    return clusters
   }
 //save cluster 
 const saveCluster = async (cluster : any) =>{
@@ -30,7 +30,7 @@ const getCluster = async (id : any) =>{
 
 const getLimited = async (id : any) =>{
     return await Clusters.findOne({
-        select:["id", "name"],
+        select:["id", "name", "color"],
 
         where:{
             id : id 

@@ -13,7 +13,7 @@ const getLimitedClusters : EXPRESS.RequestHandler = async (req, res) =>{
     
     const id : any = req.query.id 
     Services.getLimited(id).then((data : any) =>{
-        if (data.length) {
+        if (data) {
             res.status(200).send(data)
             return
         }
